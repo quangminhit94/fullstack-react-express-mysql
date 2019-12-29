@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const mysql = require('mysql')
+const bodyParser = require('body-parser')
 
 const app = express()
 const port = 3000
@@ -18,6 +19,7 @@ const connection = mysql.createConnection(CONNECTION_INFO)
 // const pool = mysql.createPool(CONNECTION_INFO)
 
 app.use(cors())
+app.use(bodyParser.json())
 connection.connect(err => {
   if (err) return err
 })
@@ -26,8 +28,8 @@ app.get('/', (req, res) => {
   res.send('Hello World! I am awake')
 })
 
-app.get('/products/add', (req, res) => {
-  const { name, price} = req.query
+app.post('/products/add', (req, res) => {
+  const { name, price } = req.body
   const INSERT_PRODUCTS_QUERY = `INSERT INTO PRODUCTS (NAME, PRICE) VALUE ('${name}', ${price})`
   connection.query(INSERT_PRODUCTS_QUERY, (err, results) => {
     if (err) return res.send(err)
