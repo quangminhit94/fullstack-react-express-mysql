@@ -4,20 +4,19 @@ const mysql = require('mysql')
 const bodyParser = require('body-parser')
 
 const app = express()
-const port = process.env.port
+const port = process.env.PORT || 3000
 const CONNECTION_INFO = {
-  host: '127.0.0.1',
-  port: '3306',
-  user: 'root',
-  password: 'root',
-  database: 'react_sql',
-  insecureAuth : true
+  host: 'us-cdbr-iron-east-05.cleardb.net',
+  user: 'b0d13d601f5e17',
+  password: '586f8d12',
+  database: 'heroku_9e4d86c8dbf765d'
 }
 
 const SELECT_ALL_PRODUCTS_QUERY = "SELECT * FROM PRODUCTS"
 const connection = mysql.createConnection(CONNECTION_INFO)
 // const pool = mysql.createPool(CONNECTION_INFO)
 
+// app.use(express.logger());
 app.use(cors())
 app.use(bodyParser.json())
 connection.connect(err => {
