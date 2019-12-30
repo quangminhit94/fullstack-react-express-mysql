@@ -4,7 +4,7 @@ const mysql = require('mysql')
 const bodyParser = require('body-parser')
 
 const app = express()
-const port = 3000
+const port = process.env.port
 const CONNECTION_INFO = {
   host: '127.0.0.1',
   port: '3306',
