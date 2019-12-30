@@ -3,6 +3,9 @@ const cors = require('cors')
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
 
+// const fs = require('fs')
+// const https = require('https')
+
 const app = express()
 const port = 3000
 const CONNECTION_INFO = {
