@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   getProducts = _ => {
-    fetch('//localhost:3000/products')
+    fetch('//node-create-server.herokuapp.com/products')
       .then(response => response.json())
       .then(response => this.setState({products: response.data}))
       .catch(err => console.error(err))
@@ -25,7 +25,7 @@ class App extends Component {
 
   async getProductsEs7() {
     try {
-      let response = await fetch('//localhost:3000/products')
+      let response = await fetch('//node-create-server.herokuapp.com/products')
       let {data} = await response.json()
       console.log(data)
       this.setState({products: data})
@@ -39,7 +39,7 @@ class App extends Component {
     const {product} = this.state
     // const {product_id,name} = product
 
-    fetch('//localhost:3000/products/add', {
+    fetch('//node-create-server.herokuapp.com/products/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'

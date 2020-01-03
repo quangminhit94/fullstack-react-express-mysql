@@ -18,6 +18,7 @@ const connection = mysql.createConnection(CONNECTION_INFO)
 
 // app.use(express.logger());
 app.use(cors())
+// app.options('*', cors());
 app.use(bodyParser.json())
 connection.connect(err => {
   if (err) return err
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
   res.send('Hello World! I am awake')
 })
 
-app.post('/products/add', (req, res) => {
+app.post('/products/add', cors(), (req, res) => {
   const { name, price } = req.body
   const INSERT_PRODUCTS_QUERY = `INSERT INTO PRODUCTS (NAME, PRICE) VALUE ('${name}', ${price})`
   connection.query(INSERT_PRODUCTS_QUERY, (err, results) => {
